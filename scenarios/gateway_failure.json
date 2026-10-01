@@ -1,0 +1,17 @@
+{
+  "scenario_id": "gateway_failure",
+  "name": "Default Gateway Connectivity Failure",
+  "description": "Client has a static or assigned IP address, but the router / default gateway at 192.168.1.1 is unresponsive.",
+  "initial_user_symptoms": "I have an IP address (192.168.1.50), but I cannot ping my home router or access the router admin portal.",
+  "environment": {
+    "wifi_connected": true,
+    "has_valid_ip": true,
+    "gateway_reachable": false,
+    "internet_ip_reachable": false,
+    "dns_resolution_ok": false,
+    "packet_loss_high": false,
+    "firewall_blocking_traffic": false,
+    "ip_conflict_detected": false
+  },
+  "ground_truth_fault": "gateway_failure"
+}

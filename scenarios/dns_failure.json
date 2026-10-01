@@ -1,0 +1,17 @@
+{
+  "scenario_id": "dns_failure",
+  "name": "DNS Resolution Failure",
+  "description": "Client has active Wi-Fi, valid local IP, reachable gateway, and reaches public IP (8.8.8.8), but DNS domain resolution fails.",
+  "initial_user_symptoms": "I can ping 8.8.8.8 directly, but websites like google.com will not open in any browser.",
+  "environment": {
+    "wifi_connected": true,
+    "has_valid_ip": true,
+    "gateway_reachable": true,
+    "internet_ip_reachable": true,
+    "dns_resolution_ok": false,
+    "packet_loss_high": false,
+    "firewall_blocking_traffic": false,
+    "ip_conflict_detected": false
+  },
+  "ground_truth_fault": "dns_failure"
+}

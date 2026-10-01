@@ -1,0 +1,17 @@
+{
+  "scenario_id": "wan_failure",
+  "name": "WAN / ISP Uplink Failure",
+  "description": "Local LAN is healthy and default gateway is responsive, but ISP WAN uplink is down.",
+  "initial_user_symptoms": "I can log into my router settings page at 192.168.1.1, but no external internet sites work.",
+  "environment": {
+    "wifi_connected": true,
+    "has_valid_ip": true,
+    "gateway_reachable": true,
+    "internet_ip_reachable": false,
+    "dns_resolution_ok": false,
+    "packet_loss_high": false,
+    "firewall_blocking_traffic": false,
+    "ip_conflict_detected": false
+  },
+  "ground_truth_fault": "wan_failure"
+}

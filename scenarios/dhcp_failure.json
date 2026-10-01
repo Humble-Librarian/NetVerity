@@ -1,0 +1,17 @@
+{
+  "scenario_id": "dhcp_failure",
+  "name": "DHCP Address Assignment Failure",
+  "description": "Client connects to the Wi-Fi AP, but receives an APIPA 169.254.x.x or no valid IP from the DHCP pool.",
+  "initial_user_symptoms": "My laptop says connected to Wi-Fi, but shows 'No Internet, Secured' and no websites load.",
+  "environment": {
+    "wifi_connected": true,
+    "has_valid_ip": false,
+    "gateway_reachable": false,
+    "internet_ip_reachable": false,
+    "dns_resolution_ok": false,
+    "packet_loss_high": false,
+    "firewall_blocking_traffic": false,
+    "ip_conflict_detected": false
+  },
+  "ground_truth_fault": "dhcp_failure"
+}

@@ -1,0 +1,23 @@
+{
+  "scenario_id": "conflict_case",
+  "name": "Disagreement and Contradiction Scenario",
+  "description": "User reports that gateway is unreachable, but diagnostic test detects gateway is reachable, while Laya signal suggests local issue.",
+  "initial_user_symptoms": "I think my router is completely broken and unreachable.",
+  "environment": {
+    "wifi_connected": true,
+    "has_valid_ip": true,
+    "gateway_reachable": true,
+    "internet_ip_reachable": true,
+    "dns_resolution_ok": false,
+    "packet_loss_high": false,
+    "firewall_blocking_traffic": false,
+    "ip_conflict_detected": false
+  },
+  "ground_truth_fault": "dns_failure",
+  "metadata": {
+    "inject_user_contradiction": {
+      "predicate": "gateway_reachable",
+      "value": false
+    }
+  }
+}

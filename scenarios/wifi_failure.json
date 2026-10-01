@@ -1,0 +1,17 @@
+{
+  "scenario_id": "wifi_failure",
+  "name": "Wi-Fi Authentication / Link Failure",
+  "description": "Client cannot connect to the Wi-Fi network due to incorrect WPA2/WPA3 passphrase or AP rejection.",
+  "initial_user_symptoms": "My phone and PC keep saying 'Unable to connect to this network' and the Wi-Fi icon has an exclamation mark.",
+  "environment": {
+    "wifi_connected": false,
+    "has_valid_ip": false,
+    "gateway_reachable": false,
+    "internet_ip_reachable": false,
+    "dns_resolution_ok": false,
+    "packet_loss_high": false,
+    "firewall_blocking_traffic": false,
+    "ip_conflict_detected": false
+  },
+  "ground_truth_fault": "wifi_auth_failure"
+}
