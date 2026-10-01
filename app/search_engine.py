@@ -246,6 +246,7 @@ class DiagnosticSearchEngine:
                     prolog_eval = self.prolog_engine.infer(next_state)
                     is_goal = (
                         len(prolog_eval.supported_faults) == 1
+                        and prolog_eval.supported_faults[0] in relevant_faults
                         and not prolog_eval.domain_contradictions
                     )
 

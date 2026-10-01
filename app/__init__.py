@@ -1,6 +1,8 @@
-"""NetVerity: Hybrid AI Network Fault Diagnosis and Troubleshooting Engine."""
+"""NetVerity: Hybrid AI Network Fault Diagnosis and Troubleshooting System."""
 
+from .agent import DiagnosticSessionResult, HybridDiagnosticAgent
 from .evidence import Evidence, EvidenceSource, TruthValue
+from .explanation import DiagnosticExplanation, ExplanationEngine
 from .history import DiagnosticEvent, DiagnosticEventKind, DiagnosticHistory
 from .laya_engine import (
     DiagnosticCategory,
@@ -42,13 +44,17 @@ __all__ = [
     "DiagnosticCategory",
     "DiagnosticEvent",
     "DiagnosticEventKind",
+    "DiagnosticExplanation",
     "DiagnosticHistory",
     "DiagnosticSearchEngine",
+    "DiagnosticSessionResult",
     "DiagnosticState",
     "DiagnosticTestSimulator",
     "Evidence",
     "EvidenceSource",
+    "ExplanationEngine",
     "FAULT_CATEGORY_MAP",
+    "HybridDiagnosticAgent",
     "LayaDecisionResult",
     "LayaEngine",
     "NetworkEnvironment",

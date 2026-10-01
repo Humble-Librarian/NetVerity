@@ -13,7 +13,7 @@
     "firewall_blocking_traffic": false,
     "ip_conflict_detected": false
   },
-  "ground_truth_fault": "dns_failure",
+  "ground_truth_fault": "gateway_failure",
   "metadata": {
     "inject_user_contradiction": {
       "predicate": "gateway_reachable",

@@ -157,7 +157,7 @@ class DecisionPolicyEngine:
                     laya_result=laya_res,
                     disagreement_detected=False,
                 )
-            # If disagreement was detected, mandate an additional verification step before finalizing
+            # If disagreement was detected, check if additional tests remain for this fault
             next_test, search_trace = self.search_engine.plan_next_action(state, target_fault=final_fault)
             if next_test:
                 return PolicyDecision(
@@ -171,6 +171,16 @@ class DecisionPolicyEngine:
                     disagreement_detected=True,
                     disagreement_reason=disagreement_reason,
                 )
+            # All tests for this fault are verified: accept diagnosis despite prior statistical bias
+            return PolicyDecision(
+                action=PolicyAction.DIAGNOSE,
+                target_fault=final_fault,
+                reason=f"Prolog definitively proved '{final_fault}' with verified test evidence.",
+                prolog_result=prolog_res,
+                laya_result=laya_res,
+                disagreement_detected=True,
+                disagreement_reason=disagreement_reason,
+            )
 
         # 6. Candidate Exploration via BFS Search & Laya Prioritization
         target_candidate = None
