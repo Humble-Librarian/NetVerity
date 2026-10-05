@@ -15,6 +15,9 @@ from .prolog_engine import PrologEngine
 from .search_engine import DiagnosticSearchEngine, SearchTrace
 from .simulator import DiagnosticTestSimulator, Scenario
 from .state import DiagnosticState
+import logging
+
+logger = logging.getLogger("netverity.agent")
 
 
 @dataclass(frozen=True, slots=True)
@@ -68,6 +71,7 @@ class HybridDiagnosticAgent:
         verbose: bool = False,
     ) -> DiagnosticSessionResult:
         """Run full autonomous troubleshooting loop on a simulated scenario."""
+        logger.info(f"Starting diagnosis for scenario: {scenario.scenario_id}")
         simulator = DiagnosticTestSimulator(scenario.environment)
         state = DiagnosticState()
         history = DiagnosticHistory()
@@ -89,6 +93,7 @@ class HybridDiagnosticAgent:
         last_search_trace: SearchTrace | None = None
 
         while cycle <= max_cycles:
+            logger.info(f"--- Starting Diagnostic Cycle {cycle} ---")
             history.record_cycle(cycle)
 
             # Evaluate Hybrid Policy
@@ -107,6 +112,7 @@ class HybridDiagnosticAgent:
                 message=f"Policy decided: {decision.action.value.upper()}",
                 metadata=decision.to_dict(),
             )
+            logger.info(f"Cycle {cycle} Policy Decision: {decision.action.value.upper()}")
 
             if decision.action is PolicyAction.DIAGNOSE:
                 break

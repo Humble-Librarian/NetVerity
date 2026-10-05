@@ -142,7 +142,12 @@ class LayaEngine:
         user_symptoms: str,
         candidate_hypotheses: Sequence[str],
     ) -> LayaDecisionResult:
-        """Deterministic, lightweight scoring model for 0MB VRAM / CPU execution."""
+        """Deterministic, lightweight scoring model for 0MB VRAM / CPU execution.
+        
+        NOTE: This is a hand-crafted keyword and state scorer used for simulation 
+        purposes when the real Laya package is unavailable. It is fine for 
+        demo/academic projects, but clearly a simulation of the true neural model.
+        """
         text_lower = user_symptoms.lower()
         known = state.truths()
 

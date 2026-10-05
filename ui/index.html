@@ -11,57 +11,62 @@
       theme: {
         extend: {
           colors: {
-            brand: { 50: '#f0fdf4', 500: '#10b981', 600: '#059669' },
-            dark: { 950: '#06090e', 900: '#0b111a', 850: '#101826', 800: '#162234', 700: '#23344d' }
+            apple: {
+              bg: '#000000',
+              panel: '#1C1C1E',
+              panelHover: '#2C2C2E',
+              border: '#38383A',
+              blue: '#0A84FF',
+              green: '#30D158',
+              orange: '#FF9F0A',
+              red: '#FF453A',
+              gray: '#98989D',
+              lightGray: '#EBEBF5',
+              text: '#FFFFFF'
+            }
           },
           fontFamily: {
-            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI"', 'Roboto', 'sans-serif'],
           }
         }
       }
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-    body { font-family: 'Inter', sans-serif; background-color: #06090e; color: #e2e8f0; }
-    .code-font { font-family: 'JetBrains Mono', monospace; }
-    .glow-cyan { box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.25); }
-    .glow-emerald { box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25); }
+    body { font-family: '-apple-system', 'BlinkMacSystemFont', sans-serif; background-color: #000000; color: #FFFFFF; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
+    .code-font { font-family: ui-monospace, SFMono-Regular, monospace; letter-spacing: 0; }
     .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #0b111a; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #23344d; border-radius: 3px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #38383A; border-radius: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #8E8E93; }
   </style>
 </head>
-<body class="min-h-screen bg-dark-950 text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="min-h-screen bg-apple-bg text-apple-text flex flex-col selection:bg-apple-blue/30 selection:text-apple-blue">
 
   <!-- Header -->
-  <header class="border-b border-dark-800 bg-dark-900/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <header class="border-b border-apple-border/50 bg-apple-panel/70 backdrop-blur-2xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 via-indigo-500 to-emerald-400 flex items-center justify-center p-0.5 shadow-lg shadow-cyan-500/20">
-          <div class="w-full h-full bg-dark-950 rounded-[7px] flex items-center justify-center">
-            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-          </div>
+        <div class="w-8 h-8 rounded-xl bg-apple-blue flex items-center justify-center shadow-sm">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <span class="font-bold tracking-tight text-lg text-white">NetVerity</span>
-            <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-cyan-950 text-cyan-400 border border-cyan-800/60 rounded-full">Reactive User Input Engine</span>
+            <span class="font-semibold tracking-tight text-lg text-white">NetVerity</span>
+            <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-apple-blue/10 text-apple-blue rounded-full">Reactive Engine</span>
           </div>
-          <p class="text-xs text-slate-400">Prolog Logic • Laya Decision Model • BFS Search</p>
         </div>
       </div>
 
       <!-- Quick Preset Selector & Actions -->
       <div class="flex items-center space-x-3">
-        <div class="flex items-center bg-dark-850 border border-dark-700 rounded-lg p-1 text-xs">
-          <span class="px-2 py-1 text-slate-400">Preset:</span>
-          <select id="scenarioSelector" class="bg-dark-950 text-cyan-300 font-medium px-2 py-1 rounded border border-dark-700 focus:outline-none focus:border-cyan-500 cursor-pointer">
-            <option value="custom">-- Custom Freeform Input --</option>
+        <div class="flex items-center bg-apple-bg border border-apple-border rounded-xl px-2 py-1 text-xs shadow-inner">
+          <span class="text-apple-gray font-medium">Preset:</span>
+          <select id="scenarioSelector" class="bg-transparent text-apple-blue font-medium px-2 outline-none cursor-pointer">
+            <option value="custom">-- Custom Freeform --</option>
             <option value="dns_failure">DNS Resolution Failure</option>
             <option value="gateway_failure">Default Gateway Failure</option>
             <option value="dhcp_failure">DHCP Address Failure</option>
@@ -71,7 +76,7 @@
           </select>
         </div>
 
-        <button id="btnAutoRun" class="px-4 py-1.5 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white rounded-lg text-xs font-semibold flex items-center space-x-1.5 shadow-md shadow-cyan-600/20 transition">
+        <button id="btnAutoRun" class="px-4 py-1.5 bg-apple-blue hover:bg-blue-500 active:scale-95 text-white rounded-full text-xs font-semibold flex items-center space-x-1.5 transition-all duration-200">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -79,7 +84,7 @@
           <span>Run Diagnosis</span>
         </button>
 
-        <button id="btnReset" class="p-1.5 bg-dark-850 hover:bg-dark-800 text-slate-400 hover:text-slate-200 border border-dark-700 rounded-lg transition" title="Reset All State">
+        <button id="btnReset" class="p-1.5 bg-apple-panel hover:bg-apple-panelHover active:scale-95 text-apple-gray hover:text-white rounded-full transition-all duration-200" title="Reset All State">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
@@ -95,187 +100,176 @@
     <div class="lg:col-span-5 space-y-6">
 
       <!-- Real-Time User Symptom Input Box -->
-      <div class="bg-dark-900 border border-dark-800 rounded-xl p-4.5 shadow-sm space-y-3">
+      <div class="bg-apple-panel rounded-[24px] border border-apple-border/50 p-5 space-y-3 shadow-sm">
         <div class="flex items-center justify-between">
-          <label for="customProblemInput" class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
+          <label for="customProblemInput" class="text-xs font-semibold text-apple-gray flex items-center space-x-1.5 tracking-wide">
             <span>Describe Your Network Issue</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
           </label>
-          <span class="text-[10px] code-font text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">Live Reactive Input</span>
         </div>
-
         <div class="space-y-2">
-          <textarea id="customProblemInput" rows="3" class="w-full bg-dark-950 border border-dark-700 rounded-lg p-3 text-xs leading-relaxed text-slate-200 focus:outline-none focus:border-cyan-500 placeholder:text-slate-600 transition custom-scrollbar resize-none" placeholder="Type ANY network symptom here (e.g., 'Websites won't load but I can ping 8.8.8.8', 'Router 192.168.1.1 is down', 'Wi-Fi password keeps failing')..."></textarea>
+          <textarea id="customProblemInput" rows="3" class="w-full bg-apple-bg border border-apple-border rounded-xl p-3 text-[13px] leading-relaxed text-apple-lightGray focus:outline-none focus:border-apple-blue focus:ring-1 focus:ring-apple-blue placeholder:text-apple-gray transition-all custom-scrollbar resize-none shadow-inner" placeholder="Type ANY network symptom here (e.g., 'Websites won't load but I can ping 8.8.8.8')..."></textarea>
           <div class="flex justify-between items-center text-[11px]">
-            <span class="text-slate-500">Predicted Category: <span id="extractedBias" class="code-font font-bold text-cyan-400">GENERAL</span></span>
-            <button id="btnParseSymptoms" class="px-2.5 py-1 bg-dark-800 hover:bg-dark-700 border border-dark-700 rounded text-slate-300 hover:text-white transition">
-              Parse & Update Priors ↵
+            <span class="text-apple-gray">Predicted Category: <span id="extractedBias" class="code-font font-bold text-apple-blue">GENERAL</span></span>
+            <button id="btnParseSymptoms" class="px-2.5 py-1 bg-apple-bg hover:bg-apple-border border border-apple-border rounded-lg text-apple-lightGray transition-all active:scale-95">
+              Parse & Update ↵
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Interactive Environmental Probes Grid (User can click to toggle!) -->
-      <div class="bg-dark-900 border border-dark-800 rounded-xl p-4.5 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
+      <!-- Interactive Environmental Probes Grid -->
+      <div class="bg-apple-panel rounded-[24px] border border-apple-border/50 p-5 space-y-3 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Environmental Observations</h3>
-            <p class="text-[11px] text-slate-500">Click any probe to toggle <span class="text-slate-400 font-mono">UNKNOWN → TRUE → FALSE</span></p>
+            <h3 class="text-xs font-semibold text-apple-gray tracking-wide">Environmental Observations</h3>
           </div>
-          <button id="btnClearProbes" class="text-[10px] text-slate-400 hover:text-cyan-400 underline">Clear Probes</button>
+          <button id="btnClearProbes" class="text-[11px] text-apple-blue hover:text-blue-400">Clear</button>
         </div>
 
-        <div class="space-y-1.5 max-h-[380px] overflow-y-auto custom-scrollbar pr-1" id="probeList">
+        <div class="space-y-2 max-h-[380px] overflow-y-auto custom-scrollbar pr-1" id="probeList">
           <!-- Dynamically Rendered Clickable Probes -->
         </div>
       </div>
 
       <!-- Laya Statistical Model Output -->
-      <div class="bg-dark-900 border border-dark-800 rounded-xl p-4.5 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
+      <div class="bg-apple-panel rounded-[24px] border border-apple-border/50 p-5 space-y-3 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-2">
-            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Laya Decision Model</h3>
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+            <h3 class="text-xs font-semibold text-apple-gray tracking-wide">Laya Decision Model</h3>
           </div>
-          <span class="text-[10px] code-font text-indigo-400 bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-900/50">ModernBERT-421M</span>
         </div>
 
-        <!-- Choice Head Probabilities -->
-        <div class="space-y-1.5">
-          <div class="flex justify-between text-[11px] text-slate-400">
+        <div class="space-y-2">
+          <div class="flex justify-between text-[11px] text-apple-gray">
             <span>Category Probabilities</span>
-            <span class="text-cyan-400 font-mono font-medium" id="layaTopCat">DNS (85%)</span>
+            <span class="text-apple-blue font-medium" id="layaTopCat">DNS (85%)</span>
           </div>
-          <div class="grid grid-cols-4 gap-1 text-[10px] font-mono text-slate-400" id="layaCatGrid">
-            <!-- Rendered in JS -->
+          <div class="grid grid-cols-4 gap-1.5 text-[11px] font-medium text-apple-lightGray" id="layaCatGrid">
           </div>
         </div>
 
-        <!-- Urgency & Noul Confidence -->
-        <div class="grid grid-cols-2 gap-2 pt-1">
-          <div class="bg-dark-950 border border-dark-800 p-2.5 rounded-lg">
-            <span class="text-[10px] text-slate-500 uppercase font-semibold">Urgency Score</span>
-            <div class="text-sm font-mono font-bold text-amber-400 mt-0.5" id="layaUrgency">2.0 / 5.0</div>
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <div class="bg-apple-bg border border-apple-border p-3 rounded-[16px]">
+            <span class="text-[10px] text-apple-gray font-semibold">Urgency Score</span>
+            <div class="text-sm font-semibold text-apple-orange mt-1" id="layaUrgency">2.0 / 5.0</div>
           </div>
-          <div class="bg-dark-950 border border-dark-800 p-2.5 rounded-lg">
-            <span class="text-[10px] text-slate-500 uppercase font-semibold">Proposition Confidence</span>
-            <div class="text-sm font-mono font-bold text-emerald-400 mt-0.5" id="layaNoul">85.0%</div>
+          <div class="bg-apple-bg border border-apple-border p-3 rounded-[16px]">
+            <span class="text-[10px] text-apple-gray font-semibold">Confidence</span>
+            <div class="text-sm font-semibold text-apple-green mt-1" id="layaNoul">85.0%</div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Right Column: Live Reasoning, Dynamic Proof Tree, and Verdict (7 Cols) -->
+    <!-- Right Column -->
     <div class="lg:col-span-7 space-y-6">
 
       <!-- Status & Disagreement Banner -->
-      <div id="statusBanner" class="border rounded-xl p-4 bg-dark-900 border-dark-800 transition-all flex items-start space-x-3.5">
-        <div class="p-2 rounded-lg bg-cyan-950 text-cyan-400 mt-0.5" id="statusIcon">
+      <div id="statusBanner" class="rounded-[24px] p-5 bg-apple-panel border border-apple-border/50 transition-all duration-300 flex items-start space-x-4 shadow-sm">
+        <div class="p-2 rounded-xl bg-apple-blue text-white mt-0.5 shadow-sm" id="statusIcon">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </div>
         <div class="flex-1">
           <div class="flex items-center space-x-2">
-            <h4 class="text-sm font-semibold text-white" id="statusTitle">Diagnostic Engine Ready</h4>
-            <span class="text-[10px] code-font px-2 py-0.5 rounded bg-dark-950 text-slate-400 border border-dark-700" id="statusState">REACTIVE</span>
+            <h4 class="text-[15px] font-semibold text-white tracking-tight" id="statusTitle">Diagnostic Engine Ready</h4>
+            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-apple-bg text-apple-gray border border-apple-border" id="statusState">REACTIVE</span>
           </div>
-          <p class="text-xs text-slate-400 mt-1" id="statusMessage">Type your problem description on the left or toggle probe states to trigger live symbolic and statistical deductions.</p>
+          <p class="text-[13px] text-apple-gray mt-1 leading-relaxed" id="statusMessage">Type your problem description on the left or toggle probe states to trigger live symbolic and statistical deductions.</p>
         </div>
       </div>
 
-      <!-- Split View: Prolog Rules vs BFS Search Tree -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <!-- Prolog Invariants -->
-        <div class="bg-dark-900 border border-dark-800 rounded-xl p-4.5 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
+        <div class="bg-apple-panel rounded-[24px] border border-apple-border/50 p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between mb-2">
             <div class="flex items-center space-x-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Prolog Horn Clauses</h3>
+              <span class="w-2.5 h-2.5 rounded-full bg-apple-green"></span>
+              <h3 class="text-xs font-semibold text-apple-gray tracking-wide">Prolog Horn Clauses</h3>
             </div>
-            <span class="text-[10px] code-font text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-900/50">SLD Logic</span>
           </div>
 
-          <div class="space-y-1.5">
-            <div class="text-[11px] font-semibold text-slate-400">Active Candidate Faults:</div>
+          <div class="space-y-2">
+            <div class="text-[11px] font-medium text-apple-gray">Active Candidate Faults:</div>
             <div class="flex flex-wrap gap-1.5" id="candidateBadges">
-              <!-- Hypotheses badges -->
             </div>
           </div>
 
-          <div class="space-y-1.5 pt-2 border-t border-dark-800">
-            <div class="text-[11px] font-semibold text-slate-400">Proved Rule Closures:</div>
-            <div class="bg-dark-950 border border-dark-800 rounded-lg p-2.5 font-mono text-[11px] text-slate-300 space-y-1 max-h-[140px] overflow-y-auto custom-scrollbar" id="prologRulesBox">
-              <span class="text-slate-600">// Awaiting evidence...</span>
+          <div class="space-y-2 pt-3 mt-3 border-t border-apple-border/50">
+            <div class="text-[11px] font-medium text-apple-gray">Proved Rule Closures:</div>
+            <div class="bg-apple-bg border border-apple-border rounded-xl p-3 code-font text-[11px] text-apple-lightGray space-y-1 max-h-[140px] overflow-y-auto custom-scrollbar" id="prologRulesBox">
+              <span class="text-apple-gray">// Awaiting evidence...</span>
             </div>
           </div>
         </div>
 
         <!-- BFS Search Planner -->
-        <div class="bg-dark-900 border border-dark-800 rounded-xl p-4.5 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
+        <div class="bg-apple-panel rounded-[24px] border border-apple-border/50 p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between mb-2">
             <div class="flex items-center space-x-2">
-              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-              <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">BFS Search Graph</h3>
+              <span class="w-2.5 h-2.5 rounded-full bg-apple-blue"></span>
+              <h3 class="text-xs font-semibold text-apple-gray tracking-wide">BFS Search Graph</h3>
             </div>
             <div class="flex items-center space-x-2">
-              <span class="text-[10px] code-font text-slate-400">Nodes: <span class="text-cyan-400" id="bfsNodes">0</span></span>
-              <span class="text-[10px] code-font text-slate-400">Depth: <span class="text-cyan-400" id="bfsDepth">0</span></span>
+              <span class="text-[10px] font-medium text-apple-gray">Nodes: <span class="text-apple-blue" id="bfsNodes">0</span></span>
+              <span class="text-[10px] font-medium text-apple-gray">Depth: <span class="text-apple-blue" id="bfsDepth">0</span></span>
             </div>
           </div>
 
-          <div class="bg-dark-950 border border-dark-800 rounded-lg p-3 min-h-[195px] flex flex-col justify-between">
-            <div class="text-[11px] text-slate-400 font-semibold mb-1.5">Shortest Path to Goal State:</div>
-            <div class="flex items-center space-x-1.5 flex-wrap gap-y-2 py-2" id="bfsPathFlow">
-              <div class="px-2.5 py-1 bg-dark-850 border border-dark-700 rounded text-[11px] font-mono text-slate-400">Root</div>
-              <span class="text-slate-600 text-xs">→</span>
-              <div class="px-2.5 py-1 bg-dark-800 border border-dashed border-dark-600 rounded text-[11px] font-mono text-slate-500">Awaiting Evidence...</div>
+          <div class="bg-apple-bg border border-apple-border rounded-xl p-4 min-h-[195px] flex flex-col justify-between">
+            <div class="text-[11px] text-apple-gray font-medium mb-2">Shortest Path to Goal State:</div>
+            <div class="flex items-center space-x-2 flex-wrap gap-y-2 py-2" id="bfsPathFlow">
+              <div class="px-2.5 py-1 bg-apple-panel border border-apple-border rounded-lg text-[11px] font-medium text-apple-lightGray">Root</div>
+              <span class="text-apple-gray text-xs">→</span>
+              <div class="px-2.5 py-1 bg-apple-bg border border-dashed border-apple-border rounded-lg text-[11px] font-medium text-apple-gray">Awaiting Evidence...</div>
             </div>
-            <div class="text-[10px] text-slate-500 pt-2 border-t border-dark-800 flex justify-between">
+            <div class="text-[10px] text-apple-gray pt-3 border-t border-apple-border/50 flex justify-between">
               <span>Goal:</span>
-              <span class="code-font text-slate-400">|Supported| == 1 ∧ Contradictions == 0</span>
+              <span class="code-font">|Supported| == 1</span>
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- Verdict & Contrastive Explanation Engine -->
-      <div class="bg-dark-900 border border-dark-800 rounded-xl p-5 shadow-sm space-y-4">
-        <div class="flex items-center justify-between">
+      <!-- Verdict Engine -->
+      <div class="bg-apple-panel rounded-[24px] border border-apple-border/50 p-6 shadow-sm space-y-4">
+        <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-2.5">
-            <div class="w-3 h-3 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
-            <h3 class="text-sm font-semibold tracking-wide text-white">Contrastive Diagnostic Explanation</h3>
+            <div class="w-3 h-3 rounded-full bg-apple-blue"></div>
+            <h3 class="text-[15px] font-semibold tracking-tight text-white">Diagnostic Explanation</h3>
           </div>
-          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-dark-950 border border-dark-700 text-slate-400" id="uncertaintyBadge">Uncertainty: HIGH</span>
+          <span class="text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-bg text-apple-gray" id="uncertaintyBadge">Uncertainty: HIGH</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
           <!-- Final Verdict Card -->
-          <div class="md:col-span-1 bg-dark-950 border border-dark-800 rounded-xl p-4 flex flex-col justify-between">
+          <div class="md:col-span-1 bg-apple-bg border border-apple-border rounded-[18px] p-5 flex flex-col justify-between">
             <div>
-              <span class="text-[10px] uppercase font-semibold tracking-wider text-slate-500">Isolated Diagnosis</span>
-              <div class="text-base font-bold text-white mt-1 break-words" id="finalVerdict">INVESTIGATING...</div>
+              <span class="text-[10px] uppercase font-semibold text-apple-gray">Isolated Diagnosis</span>
+              <div class="text-[17px] font-bold text-white mt-1.5 tracking-tight" id="finalVerdict">INVESTIGATING...</div>
             </div>
-            <div class="mt-4 pt-3 border-t border-dark-800 flex items-center justify-between text-xs">
-              <span class="text-slate-400">Confidence:</span>
-              <span class="font-mono font-bold text-emerald-400 text-sm" id="finalConfidence">--%</span>
+            <div class="mt-4 pt-3 border-t border-apple-border/50 flex items-center justify-between text-xs">
+              <span class="text-apple-gray">Confidence:</span>
+              <span class="font-semibold text-apple-green text-[15px]" id="finalConfidence">--%</span>
             </div>
           </div>
 
-          <!-- Why & Why-Not Text -->
-          <div class="md:col-span-2 bg-dark-950 border border-dark-800 rounded-xl p-4 flex flex-col justify-between space-y-3">
+          <!-- Why Text -->
+          <div class="md:col-span-2 bg-apple-bg border border-apple-border rounded-[18px] p-5 flex flex-col justify-between space-y-3">
             <div>
-              <span class="text-[10px] uppercase font-semibold tracking-wider text-slate-500">Provenance & Symbolic Reason</span>
-              <p class="text-xs leading-relaxed text-slate-300 mt-1.5" id="explanationText">
+              <span class="text-[10px] uppercase font-semibold text-apple-gray">Provenance & Reason</span>
+              <p class="text-[13px] leading-relaxed text-apple-lightGray mt-2" id="explanationText">
                 Enter your network symptoms or toggle the environmental probes on the left to trigger the reasoning loop.
               </p>
             </div>
-            <div class="text-[11px] code-font text-slate-400 pt-2 border-t border-dark-800 flex justify-between items-center">
+            <div class="text-[11px] font-medium text-apple-gray pt-3 border-t border-apple-border/50 flex justify-between items-center">
               <span>Eliminated Alternatives:</span>
-              <span class="text-cyan-400" id="eliminatedCount">0 Hypotheses</span>
+              <span class="text-apple-blue" id="eliminatedCount">0 Hypotheses</span>
             </div>
           </div>
         </div>
@@ -286,39 +280,19 @@
 
   </main>
 
-  <!-- Complete Dynamic Reactive Script -->
   <script>
     const PROBES = [
-      { id: "wifi_connected", name: "Wi-Fi Association", test: "check_wifi", cost: 1 },
-      { id: "has_valid_ip", name: "IP Configuration (DHCP)", test: "check_ip", cost: 1 },
-      { id: "gateway_reachable", name: "Default Gateway Ping", test: "check_gateway", cost: 2 },
-      { id: "internet_ip_reachable", name: "Public IP Ping (8.8.8.8)", test: "ping_public_ip", cost: 2 },
-      { id: "dns_resolution_ok", name: "DNS Resolution", test: "check_dns", cost: 2 },
-      { id: "packet_loss_high", name: "Packet Loss Rate", test: "check_packet_loss", cost: 5 },
-      { id: "firewall_blocking_traffic", name: "Firewall Filter Check", test: "check_firewall", cost: 3 },
-      { id: "ip_conflict_detected", name: "ARP IP Conflict Probe", test: "check_ip_conflict", cost: 3 },
-      { id: "proxy_reachable", name: "HTTP/SOCKS Proxy Ping", test: "check_proxy", cost: 3 },
-      { id: "ethernet_connected", name: "Ethernet Physical Link", test: "check_ethernet", cost: 1 }
+      { id: "wifi_connected", name: "Wi-Fi Association", test: "check_wifi" },
+      { id: "has_valid_ip", name: "IP Config (DHCP)", test: "check_ip" },
+      { id: "gateway_reachable", name: "Default Gateway Ping", test: "check_gateway" },
+      { id: "internet_ip_reachable", name: "Public IP (8.8.8.8)", test: "ping_public_ip" },
+      { id: "dns_resolution_ok", name: "DNS Resolution", test: "check_dns" },
+      { id: "packet_loss_high", name: "Packet Loss Rate", test: "check_packet_loss" },
+      { id: "firewall_blocking_traffic", name: "Firewall Filter", test: "check_firewall" },
+      { id: "ip_conflict_detected", name: "ARP IP Conflict", test: "check_ip_conflict" },
+      { id: "proxy_reachable", name: "HTTP Proxy Ping", test: "check_proxy" },
+      { id: "ethernet_connected", name: "Ethernet Link", test: "check_ethernet" }
     ];
-
-    const RULES = {
-      wifi_auth_failure: { wifi_connected: false },
-      dhcp_failure: { wifi_connected: true, has_valid_ip: false },
-      gateway_failure: { has_valid_ip: true, gateway_reachable: false },
-      dns_failure: { has_valid_ip: true, gateway_reachable: true, internet_ip_reachable: true, dns_resolution_ok: false },
-      wan_failure: { has_valid_ip: true, gateway_reachable: true, internet_ip_reachable: false },
-      packet_loss_failure: { has_valid_ip: true, gateway_reachable: true, packet_loss_high: true },
-      firewall_blocking: { has_valid_ip: true, gateway_reachable: true, firewall_blocking_traffic: true },
-      ip_conflict: { ip_conflict_detected: true },
-      proxy_failure: { internet_ip_reachable: true, proxy_reachable: false },
-      ethernet_link_down: { ethernet_connected: false }
-    };
-
-    const CONTRADICTIONS = {
-      internet_without_gateway: { gateway_reachable: false, internet_ip_reachable: true },
-      dns_without_ip: { has_valid_ip: false, dns_resolution_ok: true },
-      ip_without_link: { wifi_connected: false, ethernet_connected: false, has_valid_ip: true }
-    };
 
     const PRESETS = {
       dns_failure: {
@@ -347,35 +321,27 @@
       }
     };
 
-    // State
-    let probeStates = {}; // id -> true | false | undefined
+    let probeStates = {};
 
     function initProbesUI() {
       const probeList = document.getElementById("probeList");
       probeList.innerHTML = PROBES.map(p => `
-        <div id="probe_card_${p.id}" onclick="toggleProbe('${p.id}')" class="bg-dark-950 border border-dark-800 hover:border-dark-700 cursor-pointer rounded-lg p-2.5 flex items-center justify-between text-xs transition">
-          <div class="flex items-center space-x-2.5">
-            <span id="probe_icon_${p.id}" class="w-2 h-2 rounded-full bg-slate-600"></span>
+        <div id="probe_card_${p.id}" onclick="toggleProbe('${p.id}')" class="bg-apple-bg border border-apple-border hover:border-apple-gray cursor-pointer rounded-xl p-3 flex items-center justify-between transition-all duration-200 active:scale-[0.98]">
+          <div class="flex items-center space-x-3">
+            <div id="probe_icon_${p.id}" class="w-4 h-4 rounded-full border-2 border-apple-gray flex-shrink-0"></div>
             <div>
-              <div class="font-medium text-slate-300 flex items-center space-x-1.5">
-                <span>${p.name}</span>
-                <span class="text-[9px] text-slate-600">(${p.test})</span>
-              </div>
+              <div class="text-[13px] font-medium text-apple-lightGray">${p.name}</div>
             </div>
           </div>
-          <span id="probe_status_${p.id}" class="code-font text-[10px] px-2 py-0.5 rounded bg-dark-850 text-slate-500 border border-dark-700">UNKNOWN</span>
+          <span id="probe_status_${p.id}" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-apple-panel text-apple-gray border border-apple-border/50">UNKNOWN</span>
         </div>
       `).join('');
     }
 
     function toggleProbe(id) {
-      if (probeStates[id] === undefined) {
-        probeStates[id] = true;
-      } else if (probeStates[id] === true) {
-        probeStates[id] = false;
-      } else {
-        delete probeStates[id];
-      }
+      if (probeStates[id] === undefined) probeStates[id] = true;
+      else if (probeStates[id] === true) probeStates[id] = false;
+      else delete probeStates[id];
       renderProbeCard(id);
       recalculateReasoning();
     }
@@ -387,266 +353,213 @@
 
       const val = probeStates[id];
       if (val === true) {
-        card.className = "bg-dark-950 border border-emerald-500/40 cursor-pointer rounded-lg p-2.5 flex items-center justify-between text-xs transition shadow-sm";
-        icon.className = "w-2 h-2 rounded-full bg-emerald-400";
-        status.className = "code-font text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-900/50 font-bold";
+        card.className = "bg-apple-bg border border-apple-green cursor-pointer rounded-xl p-3 flex items-center justify-between transition-all duration-200 active:scale-[0.98] shadow-sm";
+        icon.className = "w-4 h-4 rounded-full bg-apple-green border-2 border-apple-green flex-shrink-0 relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:w-1.5 after:h-1.5 after:bg-white after:rounded-full";
+        status.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-apple-green/10 text-apple-green";
         status.innerText = "TRUE";
       } else if (val === false) {
-        card.className = "bg-dark-950 border border-rose-500/40 cursor-pointer rounded-lg p-2.5 flex items-center justify-between text-xs transition shadow-sm";
-        icon.className = "w-2 h-2 rounded-full bg-rose-400";
-        status.className = "code-font text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-900/50 font-bold";
+        card.className = "bg-apple-bg border border-apple-red cursor-pointer rounded-xl p-3 flex items-center justify-between transition-all duration-200 active:scale-[0.98] shadow-sm";
+        icon.className = "w-4 h-4 rounded-full border-2 border-apple-red flex-shrink-0 relative after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:w-2 after:h-0.5 after:bg-apple-red after:rotate-45 before:content-[''] before:absolute before:top-[3px] before:left-[3px] before:w-2 before:h-0.5 before:bg-apple-red before:-rotate-45";
+        status.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-apple-red/10 text-apple-red";
         status.innerText = "FALSE";
       } else {
-        card.className = "bg-dark-950 border border-dark-800 hover:border-dark-700 cursor-pointer rounded-lg p-2.5 flex items-center justify-between text-xs transition";
-        icon.className = "w-2 h-2 rounded-full bg-slate-600";
-        status.className = "code-font text-[10px] px-2 py-0.5 rounded bg-dark-850 text-slate-500 border border-dark-700";
+        card.className = "bg-apple-bg border border-apple-border hover:border-apple-gray cursor-pointer rounded-xl p-3 flex items-center justify-between transition-all duration-200 active:scale-[0.98]";
+        icon.className = "w-4 h-4 rounded-full border-2 border-apple-border flex-shrink-0";
+        status.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-apple-panel text-apple-gray border border-apple-border/50";
         status.innerText = "UNKNOWN";
       }
     }
 
-    // Dynamic Live NLP Parser (Simulating Laya Decision Head on User Text)
-    function parseUserSymptomText(text) {
-      const t = text.toLowerCase();
-      let scores = { dns: 0.1, gateway: 0.1, dhcp: 0.1, wifi: 0.1, wan: 0.1, firewall: 0.05, proxy: 0.05, link: 0.05 };
+    async function recalculateReasoning() {
+      const userSymptoms = document.getElementById("customProblemInput").value;
+      
+      try {
+        const response = await fetch('/api/diagnose', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_symptoms: userSymptoms,
+            environment: probeStates
+          })
+        });
 
-      if (t.includes("dns") || t.includes("domain") || t.includes("website") || t.includes("google.com") || t.includes("nslookup") || t.includes("resolve")) scores.dns += 0.8;
-      if (t.includes("gateway") || t.includes("router") || t.includes("192.168") || t.includes("admin")) scores.gateway += 0.8;
-      if (t.includes("dhcp") || t.includes("169.254") || t.includes("apipa") || t.includes("lease") || t.includes("no ip")) scores.dhcp += 0.8;
-      if (t.includes("wifi") || t.includes("wireless") || t.includes("password") || t.includes("ssid") || t.includes("auth")) scores.wifi += 0.8;
-      if (t.includes("wan") || t.includes("isp") || t.includes("broadband") || t.includes("public") || t.includes("8.8.8.8")) scores.wan += 0.7;
-      if (t.includes("firewall") || t.includes("port") || t.includes("blocked")) scores.firewall += 0.8;
-      if (t.includes("packet loss") || t.includes("lag") || t.includes("ping high")) scores.gateway += 0.5;
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
 
-      const sum = Object.values(scores).reduce((a, b) => a + b, 0);
-      const normalized = {};
-      for (let k in scores) normalized[k] = (scores[k] / sum);
+        const data = await response.json();
+        renderReasoningResult(data);
+      } catch (error) {
+        console.error('Error fetching diagnosis:', error);
+      }
+    }
 
-      const top = Object.keys(normalized).reduce((a, b) => normalized[a] > normalized[b] ? a : b);
+    function renderReasoningResult(data) {
+      const expl = data.explanation;
+      const dec = data.final_decision;
+      const prolog = dec.prolog || { candidate_faults: [], supported_faults: [] };
+      const laya = dec.laya || { category_probabilities: {}, urgency_score: 2.0, hypothesis_confidence: {} };
 
-      document.getElementById("extractedBias").innerText = top.toUpperCase();
-      document.getElementById("layaTopCat").innerText = `${top.toUpperCase()} (${(normalized[top] * 100).toFixed(0)}%)`;
+      // Update Laya panel
+      const topCat = expl.laya_recommendation.toUpperCase();
+      let maxProb = 0;
+      if (laya.category_probabilities && laya.category_probabilities[expl.laya_recommendation]) {
+        maxProb = laya.category_probabilities[expl.laya_recommendation];
+      }
+      
+      document.getElementById("extractedBias").innerText = topCat;
+      document.getElementById("layaTopCat").innerText = `${topCat} (${(maxProb * 100).toFixed(0)}%)`;
 
-      // Update Category Grid
-      const grid = document.getElementById("layaCatGrid");
-      grid.innerHTML = Object.keys(normalized).slice(0, 4).map(k => `
-        <div class="bg-dark-950 border border-dark-800 rounded p-1.5 text-center">
-          <div class="text-[9px] uppercase text-slate-500">${k}</div>
-          <div class="font-bold text-cyan-400">${(normalized[k] * 100).toFixed(0)}%</div>
+      const sortedCats = Object.entries(laya.category_probabilities || {})
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 4);
+      
+      document.getElementById("layaCatGrid").innerHTML = sortedCats.map(([k, v]) => `
+        <div class="bg-apple-bg border border-apple-border rounded-xl p-2 text-center">
+          <div class="text-[9px] uppercase text-apple-gray font-semibold">${k}</div>
+          <div class="font-bold text-apple-blue mt-0.5">${(v * 100).toFixed(0)}%</div>
         </div>
       `).join('');
 
-      let urgency = 2.0;
-      if (t.includes("urgent") || t.includes("outage") || t.includes("critical") || t.includes("down")) urgency = 4.5;
-      document.getElementById("layaUrgency").innerText = `${urgency.toFixed(1)} / 5.0`;
+      document.getElementById("layaUrgency").innerText = `${(laya.urgency_score || 2.0).toFixed(1)} / 5.0`;
+      document.getElementById("layaNoul").innerText = `${(expl.laya_confidence * 100).toFixed(1)}%`;
 
-      return top;
-    }
-
-    // Dynamic Symbolic Deduction & BFS Search Planner
-    function recalculateReasoning() {
-      const known = probeStates;
-      const supportedFaults = [];
-      const eliminatedFaults = [];
-      const candidateFaults = [];
-      const firedRules = [];
-
-      // Check Domain Contradictions
-      let contradictionDetected = null;
-      for (let cName in CONTRADICTIONS) {
-        const conds = CONTRADICTIONS[cName];
-        let matches = true;
-        for (let p in conds) {
-          if (known[p] !== conds[p]) matches = false;
-        }
-        if (matches) contradictionDetected = cName;
-      }
-
-      // Check Fault Rules
-      for (let fault in RULES) {
-        const reqs = RULES[fault];
-        let allMet = true;
-        let isEliminated = false;
-        for (let p in reqs) {
-          if (known[p] === reqs[p]) {
-            // matches
-          } else if (known[p] !== undefined && known[p] !== reqs[p]) {
-            isEliminated = true;
-            allMet = false;
-          } else {
-            allMet = false;
-          }
-        }
-
-        if (allMet) {
-          supportedFaults.push(fault);
-          firedRules.push(fault);
-        } else if (isEliminated) {
-          eliminatedFaults.push(fault);
-        } else {
-          candidateFaults.push(fault);
-        }
-      }
-
-      // Render Badges
-      const allFaultList = Object.keys(RULES);
-      document.getElementById("candidateBadges").innerHTML = allFaultList.map(f => {
-        if (supportedFaults.includes(f)) {
-          return `<span class="text-[11px] code-font px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500 font-bold glow-emerald">${f}</span>`;
-        } else if (eliminatedFaults.includes(f)) {
-          return `<span class="text-[11px] code-font px-2 py-0.5 rounded bg-dark-950 text-slate-600 line-through border border-dark-850">${f}</span>`;
-        } else {
-          return `<span class="text-[11px] code-font px-2 py-0.5 rounded bg-dark-950 text-cyan-400 border border-dark-700">${f}</span>`;
-        }
+      // Update candidate badges
+      const allFaults = [...new Set([...prolog.supported_faults, ...prolog.candidate_faults, ...expl.eliminated_hypotheses.map(e => e.fault)])];
+      
+      document.getElementById("candidateBadges").innerHTML = allFaults.map(f => {
+        if (prolog.supported_faults.includes(f)) return `<span class="text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-green text-white shadow-sm">${f.replace(/_/g,' ')}</span>`;
+        if (expl.eliminated_hypotheses.some(e => e.fault === f)) return `<span class="text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-bg text-apple-gray border border-apple-border line-through">${f.replace(/_/g,' ')}</span>`;
+        return `<span class="text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-blue/10 text-apple-blue">${f.replace(/_/g,' ')}</span>`;
       }).join('');
 
-      // Render Rules Box
-      if (firedRules.length > 0) {
-        document.getElementById("prologRulesBox").innerHTML = firedRules.map(f => `
-          <div class="text-emerald-400 font-semibold">// PROLOG RULE FIRED:</div>
-          <div>possible_fault(${f}) :-</div>
-          <div class="pl-3 text-slate-300">prerequisites_verified: true.</div>
+      // Rules Fired
+      if (expl.rules_fired && expl.rules_fired.length > 0) {
+        document.getElementById("prologRulesBox").innerHTML = expl.rules_fired.map(rule => `
+          <div class="text-apple-green font-semibold">// RULE MATCH:</div>
+          <div>possible_fault(${rule.fault}) :-</div>
+          <div class="pl-3 text-apple-lightGray">${rule.description}</div>
         `).join('');
       } else {
-        document.getElementById("prologRulesBox").innerHTML = `<span class="text-slate-600">// Evaluating candidate hypotheses (${candidateFaults.length} remaining)...</span>`;
+        document.getElementById("prologRulesBox").innerHTML = `<span class="text-apple-gray">// Evaluating candidate hypotheses...</span>`;
       }
 
-      // Dynamic BFS Planner Path
-      const neededPreds = new Set();
-      const targetFault = supportedFaults[0] || candidateFaults[0];
-      if (targetFault) {
-        for (let p in RULES[targetFault]) {
-          if (known[p] === undefined) neededPreds.add(p);
-        }
-      }
+      // BFS Planner
+      document.getElementById("bfsNodes").innerText = expl.nodes_expanded;
+      document.getElementById("bfsDepth").innerText = expl.search_depth;
 
-      const bfsActions = PROBES.filter(pr => neededPreds.has(pr.id)).map(pr => pr.test);
-      document.getElementById("bfsNodes").innerText = Math.max(1, bfsActions.length * 2);
-      document.getElementById("bfsDepth").innerText = bfsActions.length;
-
-      if (bfsActions.length > 0) {
+      if (expl.search_path && expl.search_path.length > 0) {
         document.getElementById("bfsPathFlow").innerHTML = `
-          <div class="px-2.5 py-1 bg-dark-850 border border-dark-700 rounded text-[11px] font-mono text-cyan-400">Current State</div>
-          ${bfsActions.map(act => `
-            <span class="text-cyan-500 text-xs">→</span>
-            <div class="px-2 py-0.5 bg-cyan-950/80 border border-cyan-700/60 rounded text-[11px] font-mono text-cyan-300">${act}</div>
+          <div class="px-2.5 py-1 bg-apple-panel border border-apple-border rounded-lg text-[11px] font-medium text-apple-lightGray">Current State</div>
+          ${expl.search_path.map(act => `
+            <span class="text-apple-gray text-xs">→</span>
+            <div class="px-2 py-0.5 bg-apple-blue/10 text-apple-blue rounded-lg text-[11px] font-medium code-font">${act}</div>
           `).join('')}
         `;
       } else {
-        document.getElementById("bfsPathFlow").innerHTML = `
-          <div class="px-2.5 py-1 bg-emerald-950 border border-emerald-700 rounded text-[11px] font-mono text-emerald-400">Goal State Reached (Depth 0)</div>
-        `;
+        document.getElementById("bfsPathFlow").innerHTML = `<div class="px-2.5 py-1 bg-apple-green/10 text-apple-green rounded-lg text-[11px] font-medium">Goal Reached</div>`;
       }
 
-      // Verdict & Banner Updates
-      if (contradictionDetected) {
-        document.getElementById("finalVerdict").innerText = "DOMAIN CONTRADICTION";
-        document.getElementById("finalVerdict").className = "text-base font-bold text-rose-400 mt-1 break-words";
-        document.getElementById("finalConfidence").innerText = "ESCALATED";
-        document.getElementById("uncertaintyBadge").innerText = "CONTRADICTION DETECTED";
-        document.getElementById("uncertaintyBadge").className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-rose-950 border border-rose-800 text-rose-400";
-        document.getElementById("explanationText").innerText = `Contradiction detected: '${contradictionDetected}'. Local gateway is down while public IP ping succeeded. Escalating to human network technician.`;
+      // Verdict & Banner
+      const banner = document.getElementById("statusBanner");
+      const vTitle = document.getElementById("statusTitle");
+      const vState = document.getElementById("statusState");
+      const vMsg = document.getElementById("statusMessage");
+      const vIcon = document.getElementById("statusIcon");
 
-        document.getElementById("statusBanner").className = "border rounded-xl p-4 bg-rose-950/30 border-rose-800 transition-all flex items-start space-x-3.5";
-        document.getElementById("statusTitle").innerText = "Contradiction / Safety Alert";
-        document.getElementById("statusState").innerText = "ESCALATED";
-        document.getElementById("statusMessage").innerText = "Observed environmental state is physically/topologically inconsistent.";
-      } else if (supportedFaults.length === 1) {
-        const diag = supportedFaults[0];
+      if (expl.status === "ESCALATED") {
+        document.getElementById("finalVerdict").innerText = "ESCALATED";
+        document.getElementById("finalVerdict").className = "text-[17px] font-bold text-apple-red mt-1.5 tracking-tight";
+        document.getElementById("finalConfidence").innerText = "ESCALATED";
+        document.getElementById("uncertaintyBadge").innerText = expl.remaining_uncertainty.toUpperCase();
+        document.getElementById("uncertaintyBadge").className = "text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-red/10 text-apple-red";
+        document.getElementById("explanationText").innerText = expl.summary_text;
+        
+        banner.className = "rounded-[24px] p-5 bg-apple-red/10 border border-apple-red/30 transition-all duration-300 flex items-start space-x-4";
+        vTitle.innerText = "Contradiction / Alert";
+        vState.innerText = "ESCALATED"; vState.className = "text-[10px] font-semibold px-2 py-0.5 rounded-full bg-apple-red text-white";
+        vMsg.innerText = "Observed environmental state is physically/topologically inconsistent.";
+        vIcon.className = "p-2 rounded-xl bg-apple-red text-white mt-0.5 shadow-sm";
+      } else if (expl.status === "DIAGNOSE") {
+        const diag = expl.final_diagnosis || "UNKNOWN";
         document.getElementById("finalVerdict").innerText = diag.replace(/_/g, ' ').toUpperCase();
-        document.getElementById("finalVerdict").className = "text-base font-bold text-emerald-400 mt-1 break-words";
+        document.getElementById("finalVerdict").className = "text-[17px] font-bold text-apple-green mt-1.5 tracking-tight";
         document.getElementById("finalConfidence").innerText = "99.2%";
         document.getElementById("uncertaintyBadge").innerText = "Uncertainty: LOW";
-        document.getElementById("uncertaintyBadge").className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400";
-        document.getElementById("explanationText").innerText = `The system uniquely diagnosed '${diag.replace(/_/g, ' ')}'. All requisite symbolic Horn-clauses were satisfied with complete verified evidence. ${eliminatedFaults.length} alternative hypotheses were eliminated.`;
-
-        document.getElementById("statusBanner").className = "border rounded-xl p-4 bg-emerald-950/40 border-emerald-800/80 transition-all flex items-start space-x-3.5 glow-emerald";
-        document.getElementById("statusTitle").innerText = `Diagnosis Complete: ${diag.replace(/_/g, ' ').toUpperCase()}`;
-        document.getElementById("statusState").innerText = "PROVED";
-        document.getElementById("statusMessage").innerText = "Symbolic logic and statistical models converged with zero contradictions.";
+        document.getElementById("uncertaintyBadge").className = "text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-green/10 text-apple-green";
+        document.getElementById("explanationText").innerText = expl.summary_text;
+        
+        banner.className = "rounded-[24px] p-5 bg-apple-green/10 border border-apple-green/30 transition-all duration-300 flex items-start space-x-4";
+        vTitle.innerText = `Diagnosis Complete: ${diag.replace(/_/g, ' ').toUpperCase()}`;
+        vState.innerText = "PROVED"; vState.className = "text-[10px] font-semibold px-2 py-0.5 rounded-full bg-apple-green text-white";
+        vMsg.innerText = "Symbolic logic and statistical models converged.";
+        vIcon.className = "p-2 rounded-xl bg-apple-green text-white mt-0.5 shadow-sm";
       } else {
         document.getElementById("finalVerdict").innerText = "INVESTIGATING...";
-        document.getElementById("finalVerdict").className = "text-base font-bold text-white mt-1 break-words";
+        document.getElementById("finalVerdict").className = "text-[17px] font-bold text-white mt-1.5 tracking-tight";
         document.getElementById("finalConfidence").innerText = "--%";
         document.getElementById("uncertaintyBadge").innerText = "Uncertainty: HIGH";
-        document.getElementById("uncertaintyBadge").className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-dark-950 border border-dark-700 text-slate-400";
-        document.getElementById("explanationText").innerText = `${candidateFaults.length} candidate hypotheses remain viable. Click additional probes on the left or click 'Run Diagnosis' to execute the BFS plan.`;
-
-        document.getElementById("statusBanner").className = "border rounded-xl p-4 bg-dark-900 border-dark-800 transition-all flex items-start space-x-3.5";
-        document.getElementById("statusTitle").innerText = "Analyzing User Input";
-        document.getElementById("statusState").innerText = "ACTIVE";
-        document.getElementById("statusMessage").innerText = `Active candidates: ${candidateFaults.slice(0, 3).join(', ')}...`;
+        document.getElementById("uncertaintyBadge").className = "text-[11px] font-medium px-2.5 py-1 rounded-full bg-apple-bg text-apple-gray";
+        document.getElementById("explanationText").innerText = expl.summary_text;
+        
+        banner.className = "rounded-[24px] p-5 bg-apple-panel border border-apple-border/50 transition-all duration-300 flex items-start space-x-4 shadow-sm";
+        vTitle.innerText = "Diagnostic Engine Ready";
+        vState.innerText = "REACTIVE"; vState.className = "text-[10px] font-semibold px-2 py-0.5 rounded-full bg-apple-bg text-apple-gray border border-apple-border";
+        vMsg.innerText = "Type your problem description on the left or toggle probe states.";
+        vIcon.className = "p-2 rounded-xl bg-apple-blue text-white mt-0.5 shadow-sm";
       }
 
-      document.getElementById("eliminatedCount").innerText = `${eliminatedFaults.length} Hypotheses Ruled Out`;
+      document.getElementById("eliminatedCount").innerText = `${expl.eliminated_hypotheses.length} Hypotheses Ruled Out`;
     }
 
-    // Event Listeners
+    // Events
+    let typingTimer;
     document.getElementById("customProblemInput").addEventListener("input", (e) => {
-      parseUserSymptomText(e.target.value);
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(recalculateReasoning, 500);
     });
-
     document.getElementById("btnParseSymptoms").addEventListener("click", () => {
-      const text = document.getElementById("customProblemInput").value;
-      const topCat = parseUserSymptomText(text);
-
-      // Auto-simulate tests aligned with user input
-      if (text.toLowerCase().includes("dns") || text.toLowerCase().includes("google.com")) {
-        probeStates = { wifi_connected: true, has_valid_ip: true, gateway_reachable: true, internet_ip_reachable: true, dns_resolution_ok: false };
-      } else if (text.toLowerCase().includes("gateway") || text.toLowerCase().includes("192.168")) {
-        probeStates = { wifi_connected: true, has_valid_ip: true, gateway_reachable: false };
-      } else if (text.toLowerCase().includes("dhcp") || text.toLowerCase().includes("169.254")) {
-        probeStates = { wifi_connected: true, has_valid_ip: false };
-      } else if (text.toLowerCase().includes("wifi") || text.toLowerCase().includes("password")) {
-        probeStates = { wifi_connected: false };
-      }
-
-      PROBES.forEach(p => renderProbeCard(p.id));
       recalculateReasoning();
     });
 
     document.getElementById("scenarioSelector").addEventListener("change", (e) => {
       const val = e.target.value;
-      if (val === "custom") {
-        document.getElementById("customProblemInput").value = "";
-        probeStates = {};
+      if (val === "custom") { 
+        document.getElementById("customProblemInput").value = ""; 
+        probeStates = {}; 
       } else {
         const scen = PRESETS[val];
         document.getElementById("customProblemInput").value = scen.symptom;
         probeStates = { ...scen.env };
-        parseUserSymptomText(scen.symptom);
       }
-      PROBES.forEach(p => renderProbeCard(p.id));
+      PROBES.forEach(p => renderProbeCard(p.id)); 
       recalculateReasoning();
     });
 
-    document.getElementById("btnClearProbes").addEventListener("click", () => {
-      probeStates = {};
-      PROBES.forEach(p => renderProbeCard(p.id));
-      recalculateReasoning();
+    document.getElementById("btnClearProbes").addEventListener("click", () => { 
+      probeStates = {}; 
+      PROBES.forEach(p => renderProbeCard(p.id)); 
+      recalculateReasoning(); 
     });
-
+    
     document.getElementById("btnReset").addEventListener("click", () => {
       document.getElementById("customProblemInput").value = "";
       document.getElementById("scenarioSelector").value = "custom";
-      probeStates = {};
-      PROBES.forEach(p => renderProbeCard(p.id));
-      parseUserSymptomText("");
+      probeStates = {}; 
+      PROBES.forEach(p => renderProbeCard(p.id)); 
+      recalculateReasoning();
+    });
+    
+    document.getElementById("btnAutoRun").addEventListener("click", () => {
+      const text = document.getElementById("customProblemInput").value || "Websites don't open";
+      if (!document.getElementById("customProblemInput").value) {
+        document.getElementById("customProblemInput").value = text;
+      }
       recalculateReasoning();
     });
 
-    document.getElementById("btnAutoRun").addEventListener("click", () => {
-      const text = document.getElementById("customProblemInput").value || "Websites don't open";
-      parseUserSymptomText(text);
-      if (Object.keys(probeStates).length === 0) {
-        document.getElementById("btnParseSymptoms").click();
-      } else {
-        recalculateReasoning();
-      }
-    });
-
-    // Initialize
+    // Init
     initProbesUI();
-    parseUserSymptomText("Websites will not open but 8.8.8.8 works");
     document.getElementById("customProblemInput").value = "I can ping 8.8.8.8 directly, but websites like google.com will not open in any browser.";
     probeStates = { wifi_connected: true, has_valid_ip: true, gateway_reachable: true, internet_ip_reachable: true, dns_resolution_ok: false };
     PROBES.forEach(p => renderProbeCard(p.id));

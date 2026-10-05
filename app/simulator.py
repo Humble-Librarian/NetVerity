@@ -76,6 +76,38 @@ class Scenario:
             metadata=data.get("metadata", {}),
         )
 
+    @classmethod
+    def generate_random(cls) -> Scenario:
+        """Generate a scenario with random environmental failures for stress testing."""
+        import random
+        import uuid
+        
+        env_args = {}
+        keys = [
+            "wifi_connected", "has_valid_ip", "gateway_reachable", 
+            "internet_ip_reachable", "dns_resolution_ok", "packet_loss_high",
+            "firewall_blocking_traffic", "ip_conflict_detected", 
+            "proxy_enabled", "proxy_reachable", "ethernet_connected"
+        ]
+        
+        for k in keys:
+            if "loss" in k or "blocking" in k or "conflict" in k or "proxy" in k:
+                env_args[k] = random.random() < 0.2  # 20% chance of being True for "bad" things
+            else:
+                env_args[k] = random.random() > 0.2  # 80% chance of being True for "good" things
+                
+        env = NetworkEnvironment(**env_args)
+        scen_id = f"random_{uuid.uuid4().hex[:8]}"
+        
+        return cls(
+            scenario_id=scen_id,
+            name=f"Random Scenario {scen_id}",
+            description="Dynamically generated random environment for stress testing.",
+            initial_user_symptoms="Randomly generated symptoms for BFS planner test.",
+            environment=env,
+            ground_truth_fault="unknown"
+        )
+
 
 class DiagnosticTestSimulator:
     """Executes network diagnostic tests against a simulated network environment.

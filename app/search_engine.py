@@ -117,6 +117,10 @@ class DiagnosticSearchEngine:
     ) -> tuple[str | None, SearchTrace]:
         """Run BFS to find the shortest test sequence to reach a supported diagnosis.
 
+        NOTE: This planner expands the BFS tree by simulating assumed test outcomes 
+        that align with fault hypotheses, rather than waiting for real observations. 
+        It plans against assumed outcomes since it is a planner, not an executor.
+
         Returns (next_test_to_run, complete_search_trace).
         """
         if available_actions is None:
