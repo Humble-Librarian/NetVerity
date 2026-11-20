@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import math
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from enum import Enum
 from hashlib import sha256
@@ -38,7 +38,12 @@ class EvidenceSource(str, Enum):
     SYSTEM = "system"
 
 
-def _normalise_json(value: Any, *, path: str = "metadata") -> JSONValue:
+def _normalise_json(
+    value: Any,
+    *,
+    path: str = "metadata",
+    _seen: set[int] | None = None,
+) -> JSONValue:
     """Validate and copy a JSON-compatible value."""
 
     if value is None or isinstance(value, (bool, int, str)):
@@ -47,18 +52,30 @@ def _normalise_json(value: Any, *, path: str = "metadata") -> JSONValue:
         if not math.isfinite(value):
             raise ValueError(f"{path} contains a non-finite float")
         return value
+
+    if _seen is None:
+        _seen = set()
+    obj_id = id(value)
+    if obj_id in _seen:
+        raise ValueError(f"{path} contains a circular reference")
+
     if isinstance(value, Mapping):
+        _seen.add(obj_id)
         copied: dict[str, JSONValue] = {}
         for key, item in value.items():
             if not isinstance(key, str):
                 raise TypeError(f"{path} has a non-string key: {key!r}")
-            copied[key] = _normalise_json(item, path=f"{path}.{key}")
+            copied[key] = _normalise_json(item, path=f"{path}.{key}", _seen=_seen)
+        _seen.remove(obj_id)
         return copied
     if isinstance(value, (list, tuple)):
-        return [
-            _normalise_json(item, path=f"{path}[{index}]")
+        _seen.add(obj_id)
+        result = [
+            _normalise_json(item, path=f"{path}[{index}]", _seen=_seen)
             for index, item in enumerate(value)
         ]
+        _seen.remove(obj_id)
+        return result
     raise TypeError(
         f"{path} must contain only JSON-serializable values; "
         f"got {type(value).__name__}"
@@ -180,6 +197,7 @@ class Evidence:
     metadata: Mapping[str, Any]
     confidence: float
     cycle: int | None
+    __weakref__: object = field(init=False, repr=False, compare=False, hash=False)
 
     def __init__(
         self,

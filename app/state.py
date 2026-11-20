@@ -52,6 +52,7 @@ class DiagnosticState:
     """
 
     _evidence: tuple[Evidence, ...] = field(default_factory=tuple, repr=False)
+    __weakref__: object = field(init=False, repr=False, compare=False, hash=False)
 
     def __init__(self, evidence: Iterable[Evidence] = ()) -> None:
         if isinstance(evidence, Evidence):
@@ -162,3 +163,8 @@ class DiagnosticState:
 
     def __hash__(self) -> int:
         return hash(self.fingerprint())
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, DiagnosticState):
+            return False
+        return self.fingerprint() == other.fingerprint()

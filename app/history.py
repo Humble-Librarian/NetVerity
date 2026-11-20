@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from collections.abc import Iterable, Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from hashlib import sha256
 from typing import Any
@@ -53,6 +53,7 @@ class DiagnosticEvent:
     evidence: Evidence | None
     message: str | None
     metadata: Mapping[str, Any]
+    __weakref__: object = field(init=False, repr=False, compare=False, hash=False)
 
     def __init__(
         self,
@@ -86,7 +87,8 @@ class DiagnosticEvent:
             metadata = aliases[0]
 
         normalised_cycle = _normalise_cycle(cycle)
-        assert normalised_cycle is not None
+        if normalised_cycle is None:
+            raise TypeError("cycle must be a non-negative integer, got None")
         if not isinstance(evidence, (Evidence, type(None))):
             raise TypeError("event evidence must be an Evidence instance or None")
         if message is not None and not isinstance(message, str):
@@ -187,6 +189,14 @@ class DiagnosticEvent:
     @property
     def fingerprint(self) -> str:
         return sha256(self.canonical_json().encode("utf-8")).hexdigest()
+
+    def __hash__(self) -> int:
+        return hash(self.canonical_json())
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, DiagnosticEvent):
+            return False
+        return self.fingerprint == other.fingerprint
 
 
 class DiagnosticHistory:
